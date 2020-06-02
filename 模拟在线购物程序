@@ -1,0 +1,157 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace 模拟在线购物程序
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < lbxRIt.Items.Count; i++)
+            {
+                if (lbxIt.SelectedItem == lbxRIt.Items[i])
+                {
+                    MessageBox.Show("不能添加重复商品");
+                    lbxRIt.Items.Remove(lbxIt.SelectedItem);
+                    break;
+                }
+            }
+            try
+            {
+                this.lbxRIt.Items.Add(this.lbxIt.SelectedItem);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+
+        }//>键相关功能的赋予
+        private void cbLX_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cbLX.SelectedIndex)
+            {
+                case 0:
+                    lbxIt.Items.Clear();
+                    lbxIt .Items.Add("F1速报");
+                    lbxIt.Items.Add("C#程序设计");
+                    lbxIt.Items.Add("未来简史");
+                    lbxIt.SelectedIndex = 0;
+                    break;
+                case 1:
+                    lbxIt.Items.Clear();
+                    lbxIt.Items.Add("华为P40Pro");
+                    lbxIt.Items.Add("小米10Pro");
+                    lbxIt.Items.Add("iphone 11");
+                    lbxIt.SelectedIndex = 0;
+                    break;
+                case 2:
+                    lbxIt.Items.Clear();
+                    lbxIt.Items.Add("戴尔");
+                    lbxIt.Items.Add("联想");
+                    lbxIt.Items.Add("苹果");
+                    lbxIt.Items.Add("惠普");
+                    lbxIt.SelectedIndex = 0;
+                    break;
+            }
+        }
+
+        private void tbIt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.lbxRIt.Items.Remove(this.lbxRIt.SelectedItem);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+        }//赋予<键相关的功能。
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.lbxRIt.Items.Clear();
+            for (int i = 0; i < this.lbxIt.Items.Count; i++)
+            {
+                this.lbxRIt.Items.Add(this.lbxIt.Items[i]);
+            }
+        }//赋予>>键相关的功能。
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < this.lbxRIt.Items.Count; i++)
+            {
+                this.lbxIt.Items.Add(this.lbxRIt.Items[i]);
+            }
+            this.lbxRIt.Items.Clear();
+        }//赋予<<键相关的功能
+
+        private void btYes_Click(object sender, EventArgs e)
+        {
+            string comm="";
+            for (int i = 0; i < lbxRIt.Items.Count; i++)
+                comm += lbxRIt.Items[i].ToString() + "  ";
+
+            string way;
+            if (rbWeixin.Checked)
+                way = rbWeixin.Text;
+            else
+                way = rbZhifubao.Text;
+            string yes1,yes2,yes3;
+            if (ckbPhone.Checked)
+                yes1 = ckbPhone.Text;
+            else yes1 = "";
+            if (ckbCHUANZHEN.Checked)
+                yes2 = ckbCHUANZHEN.Text;
+            else
+                yes2 ="";
+            if (ckbEmail.Checked)
+                yes3 = ckbEmail.Text;
+            else yes3 = "";
+            lbPayWay.Text = way;
+            lbYesWay.Text = yes1+yes2+yes3;
+            tbXX.Enabled = true;
+            tbXX.Text = "姓名：" + tbName.Text + "\r\n" +
+                        "电话：" + tbPhone.Text + "\r\n" +
+                        "已选商品：" + comm + "\r\n" +
+                        "支付方式：" + lbPayWay.Text + "\r\n"+
+                        "确认方式：" + lbYesWay.Text + "\r\n";
+        }//将全部数据全部传递到ttbx,并显示出来。
+
+        public void lbxRIt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btQuite_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }//点击确认按钮自动退出程序。
+
+        private void lbxIt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
